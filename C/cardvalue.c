@@ -1,7 +1,7 @@
 /* card value program */
-#include <stdio.h>;
-#include <stdlib.h>;
-int main();
+#include <stdio.h>
+#include <stdlib.h>
+int main()
 {
 	char card_name[3];
 	puts("Введите название карты: ");
