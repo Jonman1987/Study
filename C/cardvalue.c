@@ -4,9 +4,13 @@
 int main()
 {
 	char card_name[3];
-	puts("Введите название карты: ");
-	scanf("%2s", card_name);
 	int val = 10;
+	
+	puts("Введите название карты: ");
+	fflush(stdout);
+	
+	scanf("%2s", card_name);
+	
 	if (card_name[0] == 'K')
 		{
 			val = 10;
