@@ -9,7 +9,7 @@ int main()
 	puts("Введите название карты: ");
 	fflush(stdout);
 	
-	scanf("%2s", card_name);
+	scanf("%3s", card_name);
 	
 	if (card_name[0] == 'K')
 		{
