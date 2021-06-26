@@ -1,7 +1,7 @@
 #include <stdio.h>
 int larger(int a, int b)
 {
-	if (a<b)
+	if (a>b)
 		return a;
 	return b;
 }
