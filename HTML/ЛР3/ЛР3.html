@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Лабораторная работа 3-3</title>
+</head> 
+<body bgcolor="white" text="black" link="blue" alink="red" vlink="green">
+<FORM METHOD=POST>
+<P>Имя пользователя
+<BR>
+<INPUT NAME="nm" TYPE=TEXTBOX VALUE="Введите Ваше имя">
+<P>Пароль
+<BR><INPUT TYPE="PASSWORD" NAME="psw">
+<P>Пол
+<BR><INPUT TYPE="RADIO" NAME="sx" VALUE="m" CHECKED>муж.
+<INPUT TYPE="RADIO" NAME="sx" VALUE="f">жен.
+<P>Город проживания<br>
+<SELECT NAME="city">
+ <OPTION VALUE="1" SELECTED>Новосибирск
+ <OPTION VALUE="2">Томск
+ <OPTION VALUE="2">Красноярск
+ <OPTION VALUE="2">Омск
+ <OPTION VALUE="2">Другой
+ </SELECT>	
+<BR>
+<P><INPUT NAME="ed" TYPE=CHECKBOX CHECKED>
+          Есть ли у вас образование?
+ <P>Ваша биография
+<BR><TEXTAREA NAME="bio" ROWS="6" COLS="25"></TEXTAREA>
+<P><INPUT TYPE="SUBMIT" VALUE="Готово" 
+          OnClick="alert('Ваши данные отправлены')">
+<INPUT TYPE="RESET" VALUE="Отменить">
+</FORM>
+</body></html>
