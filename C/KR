@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+int main()
+{ 
+  char c;
+  FILE *tf;
+
+  system("clear");
+
+while(1)
+{
+  	system("clear");
+
+    printf("\n 1 – Новый список\n");
+    fflush(stdout);
+
+    printf(" 2 – Просмотр списка\n");
+    fflush(stdout);
+
+    printf(" 3 – Добавление в список новой записи\n");
+    fflush(stdout);
+
+    printf(" 4 – Поиск и корректировка записи в списке\n");
+    fflush(stdout);
+
+    printf(" 5 – Удаление записи из списка\n");
+    fflush(stdout);
+
+    printf(" 6 – Сохранить список в файл\n");
+    fflush(stdout);
+
+    printf(" 7 – Загрузить список из файла\n");
+    fflush(stdout);
+
+    printf(" 0 - выход\n");
+    fflush(stdout);
+
+    printf("\nВведите пункт меню: ");
+    fflush(stdout);
+
+    scanf("%c", &c);
+
+    switch (c)
+
+    { 
+      case '1': printf("1"); fflush(stdout); break;
+
+      case '2': printf("2"); fflush(stdout); break;
+
+      case '3': printf("3"); fflush(stdout); break;
+
+      case '4': printf("4"); fflush(stdout); break;
+
+      case '5': printf("5"); fflush(stdout); break;
+
+      case '6': printf("6"); fflush(stdout); break;
+
+      case '7': printf("7"); fflush(stdout); break;
+
+      case '0': return 0;
+
+      default : printf(" неверный режим");
+      fflush(stdout); 
+    }
+}
+}
