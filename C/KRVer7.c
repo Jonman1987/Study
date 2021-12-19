@@ -216,11 +216,12 @@ void FindAndCorr()
     printf("Поиск по фамилии: "); fflush(stdout); scanf("%s", &findsurname);
 
     while (p!=NULL)
-    {if (strcmp((p->data.surname), findsurname)==0)
+    {
+        if (strcmp((p->data.surname), findsurname)==0)
         {
         printf("Поиск по фамилии: ");
         PrintStructZapis(&p->data);
-        printf("\n Редактировать запись? ");
+        printf("\n Редактировать запись? y/n");
         fflush(stdout);
         scanf("%s", &ch6);
         if(ch6 == 'y')
@@ -269,18 +270,19 @@ void DeleteElem(struct spisok *del_element)
     {
         printf("В списке нет элементов");
 
-    } else if (head == del_element)
+    }
+    else if (head == del_element)
     {
         head = del_element->next;
         del_element->next = NULL;
         del_element->prev = NULL;
         free(del_element);
-    }else if ((head != del_element) && (del_element->next != NULL))
+    } else if ((head != del_element) && (del_element->next != NULL))
     {
         del_element->prev->next = del_element->next;
         free(del_element);
        
-    }else if (del_element->next == NULL)
+    } else if (del_element->next == NULL)
     {
         del_element->prev->next = NULL;
         del_element->prev = NULL;
@@ -323,7 +325,7 @@ void delete()
             if (posledovatelnost_ocenok >= 3)
             {
                         printf("\tФамилия: %s, Предмет: %s, Оценки: %d %d %d %d\n", p->data.surname, p->data.dannie_uspevaemosti[i].predm, p->data.dannie_uspevaemosti[i].ocenka1, p->data.dannie_uspevaemosti[i].ocenka2, p->data.dannie_uspevaemosti[i].ocenka3, p->data.dannie_uspevaemosti[i].ocenka4);
-                            printf("\n Удалить запись?");
+                            printf("\n Удалить запись? y/n");
                             fflush(stdout);
                             scanf("%s", &ch4);
                             fflush(stdout);
@@ -331,6 +333,7 @@ void delete()
                             if (ch4 == 'y')
                                 {   
                                     DeleteElem(p);
+                                    posledovatelnost_ocenok=0;
                                     break;
                                 }
             } else
