@@ -7,8 +7,9 @@
 #define DISPLAY_HEIGHT 8
 #define DISPLAY_WIDTH 8
 #define DISPLAY_PADDING 1
+#define DISPLAY_PADDING_WT 1
 
-uint8_t display[DISPLAY_HEIGHT][DISPLAY_WIDTH];
+uint8_t display[DISPLAY_HEIGHT];
 char *running_str_start = NULL;
 char *running_str_current = NULL;
 
@@ -101,14 +102,11 @@ void *ImplementSym(char sym) // Функция возвращающая масс
 
 void DisplayReset() // Скидывает значения показания дисплея на 0
 {
-	int i, j;
+	int i;
 
 	for (i = 0; i < DISPLAY_HEIGHT; i++)
 	{
-		for (j = 0; j < DISPLAY_WIDTH; j++)
-		{
-			display[i][j] = 0;
-		}
+			display[i] = 0;
 	}
 }
 
@@ -118,15 +116,14 @@ void DisplayShow() // Пробразует 0 и 1 в значениях дисп
 
 	for (i = 0; i < DISPLAY_HEIGHT; i++)
 	{
-		for (j = 0; j < DISPLAY_WIDTH; j++)
+		for (j = 1; j <= DISPLAY_WIDTH; j++)
 		{
-			if (display[i][j] == 0)
-			{
-				printf(". ");
-
-			} else
+			if ((display[i] >> (DISPLAY_WIDTH - j)) & 1)
 			{
 				printf("* ");
+			} else
+			{
+				printf(". ");
 			}
 		}
 		printf("\n");
@@ -162,21 +159,20 @@ void *RunningStringProc()
 	return tmp_ptr;
 }
 
-void PrintSym (uint8_t a[MATRIX_HEIGHT][MATRIX_WIDTH])
+void PrintSym (uint8_t a[MATRIX_HEIGHT])
 {
 	int i, j;
 
 	for (i = 0; i < MATRIX_HEIGHT; i++)
 	{
-		for (j = 0; j < MATRIX_WIDTH; j++)
+		for (j = 1; j <= MATRIX_WIDTH; j++)
 		{
-			if (a[i][j] == 0)
-			{
-				printf("  ");
-
-			} else
+			if ((a[i] >> (MATRIX_WIDTH - j)) & 1)
 			{
 				printf("* ");
+			} else
+			{
+				printf("  ");
 			}
 		}
 		printf("\n");
@@ -184,25 +180,27 @@ void PrintSym (uint8_t a[MATRIX_HEIGHT][MATRIX_WIDTH])
 	fflush(stdout); 
 }
 
-void MakeDisplay(uint8_t symmatrix[MATRIX_HEIGHT][MATRIX_WIDTH])
+void MakeDisplay(uint8_t symmatrix[MATRIX_HEIGHT])
 {
-	int i, j;
+	int i;
 
 	DisplayReset();
 
-	for (i = 0, j = 0; i < DISPLAY_HEIGHT; i++)
+	for (i = 0; i < MATRIX_HEIGHT; i++)
 	{		
-		if ((i >= DISPLAY_PADDING) && (j < MATRIX_HEIGHT))
+		display[i + DISPLAY_PADDING_WT] = (symmatrix[i] << DISPLAY_PADDING);
+
+		/*if ((i >= DISPLAY_PADDING) && (j < MATRIX_HEIGHT))
 		{
 			memcpy(&display[i][2], symmatrix[j], MATRIX_WIDTH);
 			j++;
-		}
+		}*/
 	}
 }
 
 int main()
 {
-	memset(display, 0, DISPLAY_WIDTH * DISPLAY_HEIGHT);
+	memset(display, 0, DISPLAY_HEIGHT);
 	//uint8_t string[8] = {9, 9, 9, 9, 9, 9, 9, 9};
 	//int i;
 	char symbol[10];
