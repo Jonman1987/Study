@@ -3,11 +3,13 @@
 #include <string.h>
 #include "sym_matrix.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 #define DISPLAY_HEIGHT 8
 #define DISPLAY_WIDTH 8
 #define DISPLAY_PADDING 1
 #define DISPLAY_PADDING_WT 1
+#define MATRIX_WIDTH 5
 
 uint8_t display[DISPLAY_HEIGHT];
 char *running_str_start = NULL;
@@ -159,7 +161,7 @@ void *RunningStringProc()
 	return tmp_ptr;
 }
 
-void PrintSym (uint8_t a[MATRIX_HEIGHT])
+/*void PrintSym (uint8_t a[MATRIX_HEIGHT])
 {
 	int i, j;
 
@@ -178,7 +180,7 @@ void PrintSym (uint8_t a[MATRIX_HEIGHT])
 		printf("\n");
 	}
 	fflush(stdout); 
-}
+}*/
 
 void MakeDisplay(uint8_t symmatrix[MATRIX_HEIGHT])
 {
@@ -196,6 +198,38 @@ void MakeDisplay(uint8_t symmatrix[MATRIX_HEIGHT])
 			j++;
 		}*/
 	}
+}
+
+void MoveDisplay(uint8_t symmatrix[MATRIX_HEIGHT])
+{
+	int i, j;
+
+	DisplayReset();
+	system("clear");
+for (j = 1; j <= MATRIX_WIDTH; j++)
+{
+	for (i = 0; i < MATRIX_HEIGHT; i++)
+	{		
+			display[i + DISPLAY_PADDING_WT] = (symmatrix[i] >> (MATRIX_WIDTH - j));
+
+	}
+	DisplayShow();
+			printf("\n");
+			sleep(1);
+			system("clear");
+}
+for (j = 1; j <= DISPLAY_HEIGHT; j++)
+{
+	for (i = 0; i < MATRIX_HEIGHT; i++)
+	{		
+			display[i + DISPLAY_PADDING_WT] = (symmatrix[i] << j);
+
+	}
+	DisplayShow();
+			printf("\n");
+			sleep(1);
+			system("clear");
+}
 }
 
 int main()
@@ -223,8 +257,8 @@ int main()
 		
 
 		MakeDisplay(tmp);
-
-		DisplayShow();
+		MoveDisplay(tmp);
+		//DisplayShow();
 		DisplayReset();
 		ptr = RunningStringProc();
 	}

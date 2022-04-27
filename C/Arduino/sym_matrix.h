@@ -88,7 +88,7 @@ uint8_t e[MATRIX_HEIGHT] =
 	0b10000,
 	0b11111,
 	0b10000,
-	0b10000,
+	0b11111,
 };
 
 uint8_t f[MATRIX_HEIGHT] = 
